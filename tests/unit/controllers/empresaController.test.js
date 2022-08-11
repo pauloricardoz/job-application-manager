@@ -26,22 +26,5 @@ describe('GET ALL', () => {
       expect(response.json.calledWith([])).to.be.equal(true);
       expect(response.status.calledOnce).to.be.true;
     });
-    it('Retorna json chamado com parametro obj', async () => {
-      const request = {};
-      const response = {};
-
-      response.status = Sinon.stub().returns(response);
-      response.json = Sinon.stub().returns();
-      const resultExecute = null;
-      Sinon.stub(empresaService, 'getAll').resolves(resultExecute);
-
-      await empresaController.getAll(request, response);
-
-      expect(response.status.calledWith(500)).to.be.equal(true);
-      expect(response.status.calledOnce).to.be.true;
-      console.log(response.json.args[0][0]);
-      expect(response.json.args[0][0]).to.keys('message');
-    });
-    
   });
 });
