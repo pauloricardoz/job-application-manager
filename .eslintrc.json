@@ -1,4 +1,18 @@
 {
   "root": true,
-  "extends": ["trybe-backend"]
+  "extends": [
+    "trybe-backend"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.test.js"
+      ],
+      "rules": {
+        "mocha/max-top-level-suites": "off",
+        "no-unused-expressions": "off",
+        "sonarjs/no-identical-functions": "off"
+      }
+    }
+  ]
 }
