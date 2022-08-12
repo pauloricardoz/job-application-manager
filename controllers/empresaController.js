@@ -1,6 +1,7 @@
 const empresaService = require('../services/empresaService');
 
 const ERROR_500 = 'Algo deu errado';
+
 const getAll = async (req, res) => {
   try {
     const resultado = await empresaService.getAll();

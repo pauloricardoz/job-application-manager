@@ -8,9 +8,8 @@ const getAll = async () => empresaModel.getAll();
 const getById = async (id) => empresaModel.getById(id);
 
 const create = async ({ name }) => {
-  const empresa = await empresaModel.getAll();
-  console.log(empresa);
-  if (existsDataByName(empresa, name)) return null;
+  const empresas = await empresaModel.getAll();
+  if (existsDataByName(empresas, name)) return null;
 
   return empresaModel.create({ name });
 };
