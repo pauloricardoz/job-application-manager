@@ -10,12 +10,12 @@ app.use(express.json());
 app.use('/empresas', routes.empresaRoute);
 app.use('/habilidades', routes.habilidadesRoute);
 
-app.use((err, req, res, next) => {
-  if (err.message === 'connect ECONNREFUSED 127.0.0.1:3306') {
-    return res.status(500).json({ message: 'banco esta off' });
-  }
-  res.status(500).json({ message: 'Erro do middleware' });
-});
+// app.use((err, req, res, next) => {
+//   if (err.message === 'connect ECONNREFUSED 127.0.0.1:3306') {
+//     return res.status(500).json({ message: 'banco esta off' });
+//   }
+//   res.status(500).json({ message: 'Erro do middleware' });
+// });
 
 const PORT = process.env.PORT || 4000;
 
