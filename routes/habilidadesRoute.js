@@ -3,9 +3,12 @@ const express = require('express');
 const habilidadesController = require('../controllers/habilidadesController');
 const valid = require('../middleware/habildiades');
 
-const empresaRoute = express.Router();
+const habilidadesRoute = express.Router();
 
-empresaRoute.get('/', habilidadesController.getAll);
-empresaRoute.post('/', valid.validacao, habilidadesController.create);
+habilidadesRoute.get('/', habilidadesController.getAll);
+habilidadesRoute.post('/', valid.validationBody, habilidadesController.create);
+habilidadesRoute.get('/:id', habilidadesController.getById);
+habilidadesRoute.put('/:id', habilidadesController.update);
+habilidadesRoute.delete('/:id', habilidadesController.exclude);
 
-module.exports = empresaRoute;
+module.exports = habilidadesRoute;

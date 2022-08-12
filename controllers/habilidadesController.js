@@ -1,27 +1,63 @@
 const habilidadesService = require('../services/habilidadesService');
 
+const ERROR_500 = 'Algo deu errado';
+
 const getAll = async (req, res, _next) => {
   try {
     const resultado = await habilidadesService.getAll();
     return res.status(200).json(resultado);
   } catch (error) {
-    // next(error);
     console.log(error);
-    res.status(500).json({ message: 'Algo deu erro. Desculpe!' });
+    res.status(500).json({ message: ERROR_500 });
+  }
+};
+
+const getById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await habilidadesService.getById(id); 
+    return res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: ERROR_500 });
   }
 };
 
 const create = async (req, res) => {
+  const { name, level } = req.body;
   try {
-    const { name, level } = req.body;
-    // if (name.length < 3) return res.status(422).json({ message: 'name < 3' });
-    const resultado = await habilidadesService.create({ name, level });
-    // if (resultado.isError) return res.status(422).json(resultado.message);
-    return res.status(200).json(resultado);
+    const result = await habilidadesService.create({ name, level }); 
+    if (!result) return res.status(400).json({ message: 'Empresa já existe' });
+    return res.status(201).json(result);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Algo deu erro. Desculpe!' });
+    res.status(500).json({ message: ERROR_500 });
   }
 };
 
-module.exports = { getAll, create };
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { name, level } = req.body;
+  try {
+    const result = await habilidadesService.update({ name, level, id }); 
+    if (!result) return res.status(400).json({ message: 'Operação não foi completada' });
+    return res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: ERROR_500 });
+  }
+};
+
+const exclude = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await habilidadesService.exclude(id); 
+    if (!result) return res.status(404).json({ message: 'Nenhuma linha afetada' });
+    return res.status(204).json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: ERROR_500 });
+  }
+};
+
+module.exports = { getAll, getById, create, update, exclude };
