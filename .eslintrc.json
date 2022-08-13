@@ -11,7 +11,9 @@
       "rules": {
         "mocha/max-top-level-suites": "off",
         "no-unused-expressions": "off",
-        "sonarjs/no-identical-functions": "off"
+        "sonarjs/no-identical-functions": "off",
+        "max-lines": "off",
+        "sonarjs/no-duplicate-string": "off"
       }
     }
   ]
