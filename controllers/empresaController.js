@@ -53,7 +53,7 @@ const exclude = async (req, res) => {
   try {
     const result = await empresaService.exclude(id); 
     if (!result) return res.status(404).json({ message: 'Nenhuma linha afetada' });
-    return res.status(204).json(result);
+    return res.status(204).json();
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: ERROR_500 });
