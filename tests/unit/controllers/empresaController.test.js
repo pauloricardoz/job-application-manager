@@ -1,11 +1,14 @@
 const { expect } = require('chai');
 const { describe } = require('mocha');
 const Sinon = require('sinon');
+require('dotenv/config');
+
+const testErrors = process.env.TEST_ERRORS === 'true';
 
 const empresaService = require('../../../services/empresaService');
 const empresaController = require('../../../controllers/empresaController');
 const testMyController = require('../helper/controllerTester');
-
+/*
 describe('GET ALL', () => {
   describe('Caso OK com BD vazio', () => {
     let request = {};
@@ -77,7 +80,8 @@ describe('GET ALL', () => {
     });
   });
 });
-
+*/
+describe('CONTROLLER', () => {
 describe('GET ALL outra forma de testar', () => {
   describe('Caso OK com BD vazio', () => {
     beforeEach(async function () {
@@ -137,7 +141,8 @@ describe('GET ALL outra forma de testar', () => {
       expect(resposta.spies.json.calledOnce).to.be.equal(true);
     });
   });
-  describe.skip('BD lança erro', () => {
+  describe('BD lança erro', () => {
+    if (testErrors) return null;
     beforeEach(async function () {
       Sinon.stub(empresaService, 'getAll').throws(new Error('Erro do teste'));
     });
@@ -228,7 +233,8 @@ describe('GET BY ID outra forma de testar', () => {
       expect(result.spies.json.calledOnce).to.be.equal(true);
     });
   });
-  describe.skip('BD lança erro', () => {
+   describe('BD lança erro', () => {
+    if (testErrors) return null;
     beforeEach(async function () {
       Sinon.stub(empresaService, 'getAll').throws(new Error('Erro do teste'));
     });
@@ -318,7 +324,9 @@ describe('CREATE outra forma de testar', () => {
       expect(result.spies.json.calledOnce).to.be.equal(true);
     });
   });
-  describe.skip('BD lança erro', () => {
+  describe('BD lança erro', () => {
+    if (testErrors) return null;
+
     const req = { body: { name: 'Test Inc.' } };
     beforeEach(async function () {
       Sinon.stub(empresaService, 'create').throws(new Error('Erro do teste'));
@@ -410,7 +418,9 @@ describe('UPDATE outra forma de testar', () => {
       expect(result.spies.json.calledOnce).to.be.equal(true);
     });
   });
-  describe.skip('BD lança erro', () => {
+  describe('BD lança erro', () => {
+    if (testErrors) return null;
+
     const req = { body: { name: 'Test Inc.' }, params: { id: '1' } };
     beforeEach(async function () {
       Sinon.stub(empresaService, 'update').throws(new Error('Erro do teste'));
@@ -441,7 +451,7 @@ describe('UPDATE outra forma de testar', () => {
   });
 });
 
-describe.only('Exclude outra forma de testar', () => {
+describe('Exclude outra forma de testar', () => {
   describe('Caso empresa não exista no BD', () => {
     const req = { body: { name: 'Test Inc.' }, params: { id: '1' } };
     beforeEach(async function () {
@@ -502,7 +512,9 @@ describe.only('Exclude outra forma de testar', () => {
       expect(result.spies.json.calledOnce).to.be.equal(true);
     });
   });
-  describe.skip('BD lança erro', () => {
+  describe('BD lança erro', () => {
+    if (testErrors) return null;
+
     const req = { body: { name: 'Test Inc.' }, params: { id: '1' } };
     beforeEach(async function () {
       Sinon.stub(empresaService, 'exclude').throws(new Error('Erro do teste'));
@@ -531,4 +543,5 @@ describe.only('Exclude outra forma de testar', () => {
       expect(resposta.spies.json.calledOnce).to.be.equal(true);
     });
   });
+});
 });
