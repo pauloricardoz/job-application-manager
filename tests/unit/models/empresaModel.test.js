@@ -5,7 +5,7 @@ const connection = require('../../../models/connection');
 
 const empresaModel = require('../../../models/empresaModel');
 
-describe.only('MODEL EMPRESA', () => {
+describe('MODEL EMPRESA', () => {
   describe('GET ALL', () => {
     describe('Caso OK', () => {
       afterEach(function () {
@@ -48,7 +48,7 @@ describe.only('MODEL EMPRESA', () => {
       });
     });
   });
-  describe.only('GET BY ID', () => {
+  describe('GET BY ID', () => {
     describe('Caso OK', () => {
       // before(()=>{
       //   const resultExecute = []
@@ -58,37 +58,29 @@ describe.only('MODEL EMPRESA', () => {
         // connection.execute.restore();
         Sinon.restore();
       });
-      it('retorna array', async function () {
+      it('retorna undefined', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resultExecute = [];
         Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-        const resultado = await empresaModel.getAll();
+        const resultado = await empresaModel.getById();
 
-        expect(resultado).to.be.an('array');
+        expect(resultado).to.be.equal(undefined);
       });
-      it('retorna array vazio', async function () {
-        // AAA - ARRANGE - ACT - ASSERT
-        const resultExecute = [];
-        Sinon.stub(connection, 'execute').resolves([resultExecute]);
-
-        const resultado = await empresaModel.getAll();
-
-        expect(resultado).to.be.empty;
-      });
-      it('Retorna array cheio', async function () {
+  
+      it('Retorna um objeto', async function () {
         const resultExecute = [{ id: 1, name: 'teste' }];
         Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-        const resultado = await empresaModel.getAll();
+        const resultado = await empresaModel.getById();
 
-        expect(resultado).to.be.not.empty;
+        expect(resultado).to.be.an('object');
       });
-      it('Retorna array contenha objetos ', async function () {
+      it('Retorna objetos que contenha "id" e "name"', async function () {
         const resultExecute = [{ id: 1, name: 'teste' }];
         Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-        const [resultado] = await empresaModel.getAll();
+        const resultado = await empresaModel.getById(1);
 
         expect(resultado).to.be.an('object');
         expect(resultado).to.all.keys('name', 'id');
