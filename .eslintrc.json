@@ -3,6 +3,12 @@
   "extends": [
     "trybe-backend"
   ],
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ]
+  },
   "overrides": [
     {
       "files": [
