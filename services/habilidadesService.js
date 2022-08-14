@@ -21,7 +21,7 @@ const update = async ({ level, name, id }) => {
   const result = await habilidadesModel.update({ level, name, id });
   
   if (!result.affectedRows) return null;
-  return { name, id };
+  return { name, level, id };
 };
 
 const exclude = async (id) => {
