@@ -16,10 +16,10 @@ const testMyController = async (controller, request = BASIC_REQ) => {
     json: (obj) => {
       result.body = obj;
       return null; 
-      },
+    },
     status: (num) => {
-    result.status = num; 
-    return response; 
+      result.status = num; 
+      return response; 
     },
   };
 
