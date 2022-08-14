@@ -236,7 +236,7 @@ describe('CONTROLLER', () => {
     describe('BD lança erro', () => {
       if (testErrors) return null;
       beforeEach(async function () {
-        Sinon.stub(empresaService, 'getAll').throws(new Error('Erro do teste'));
+        Sinon.stub(empresaService, 'getById').throws(new Error('Erro do teste'));
       });
       afterEach(function () {
         Sinon.restore();
