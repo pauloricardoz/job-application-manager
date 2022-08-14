@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "mocha tests/**/*$NAME*.test.js --exit",
-    "coverage": "nyc --include controllers --include services --include models mocha tests/**/*$NAME*.test.js --exit"
+    "coverage": "nyc --all --include controllers --include services --include models mocha tests/**/*$NAME*.test.js --exit"
   },
   "repository": {
     "type": "git",
