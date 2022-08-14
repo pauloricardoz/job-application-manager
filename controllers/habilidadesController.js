@@ -2,7 +2,7 @@ const habilidadesService = require('../services/habilidadesService');
 
 const ERROR_500 = 'Algo deu errado';
 
-const getAll = async (req, res, _next) => {
+const getAll = async (_req, res, _next) => {
   try {
     const resultado = await habilidadesService.getAll();
     return res.status(200).json(resultado);

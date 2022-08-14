@@ -2,7 +2,7 @@ const empresaService = require('../services/empresaService');
 
 const ERROR_500 = 'Algo deu errado';
 
-const getAll = async (req, res) => {
+const getAll = async (_req, res) => {
   try {
     const resultado = await empresaService.getAll();
     return res.status(200).json(resultado);

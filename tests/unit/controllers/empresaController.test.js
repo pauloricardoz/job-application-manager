@@ -8,80 +8,8 @@ const testErrors = process.env.TEST_ERRORS === 'true';
 const empresaService = require('../../../services/empresaService');
 const empresaController = require('../../../controllers/empresaController');
 const testMyController = require('../helper/controllerTester');
-/*
-describe('GET ALL', () => {
-  describe('Caso OK com BD vazio', () => {
-    let request = {};
-    let response = {};
-    beforeEach(async function () {
-      request = {};
-      response = {};
-  
-      response.status = Sinon.stub().returns(response);
-      response.json = Sinon.stub().returns();
-      const resultExecute = [];
-      Sinon.stub(empresaService, 'getAll').resolves(resultExecute);
-  
-      await empresaController.getAll(request, response);
-    });
-    afterEach(function () {
-      Sinon.restore();
-    });
-    it('retorna status 200', async function () {
-      // AAA - ARRANGE - ACT - ASSERT
-      expect(response.status.calledWith(200)).to.be.equal(true);
-    });
-    it('retorna status json com array vazio', async function () {
-      // AAA - ARRANGE - ACT - ASSERT
-      expect(response.json.calledWith([])).to.be.equal(true);
-    });
-    it('status chamado uma unica vez', async function () {
-      // AAA - ARRANGE - ACT - ASSERT
-      expect(response.status.calledOnce).to.be.true;
-    });
-    it('json chamado uma unica vez', async function () {
-      // AAA - ARRANGE - ACT - ASSERT
-      expect(response.json.calledOnce).to.be.true;
-    });
-  });
-  describe('Caso OK com BD com dados', () => {
-    let request = {};
-    let response = {};
-    beforeEach(async function () {
-      request = {};
-      response = {};
-  
-      response.status = Sinon.stub().returns(response);
-      response.json = Sinon.stub().returns();
-      const resultExecute = [{ name: 'teste Inc.', id: 99 }];
-      Sinon.stub(empresaService, 'getAll').resolves(resultExecute);
-  
-      await empresaController.getAll(request, response);
-    });
-    afterEach(function () {
-      Sinon.restore();
-    });
-    it('retorna status 200', async function () {
-      // AAA - ARRANGE - ACT - ASSERT
-      expect(response.status.calledWith(200)).to.be.equal(true);
-    });
-    it('retorna status json com array vazio', async function () {
-      // AAA - ARRANGE - ACT - ASSERT
-      expect(response.json.calledWith([{ name: 'teste Inc.', id: 99 }]))
-        .to.be.equal(true);
-    });
-    it('status chamado uma unica vez', async function () {
-      // AAA - ARRANGE - ACT - ASSERT
-      expect(response.status.calledOnce).to.be.true;
-    });
-    it('json chamado uma unica vez', async function () {
-      // AAA - ARRANGE - ACT - ASSERT
-      expect(response.json.calledOnce).to.be.true;
-    });
-  });
-});
-*/
-describe('CONTROLLER', () => {
+
+describe('CONTROLLER EMPRESA', () => {
   describe('GET ALL outra forma de testar', () => {
     describe('Caso OK com BD vazio', () => {
       beforeEach(async function () {
@@ -96,7 +24,7 @@ describe('CONTROLLER', () => {
         const result = await testMyController(empresaController.getAll);
         expect(result.status).to.be.equal(200);
       });
-      it('retorna status json com array vazio', async function () {
+      it('retorna json com array vazio', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const result = await testMyController(empresaController.getAll);
         expect(result.body).to.be.deep.equal([]);
@@ -125,7 +53,7 @@ describe('CONTROLLER', () => {
         const resposta = await testMyController(empresaController.getAll);
         expect(resposta.status).to.be.equal(200);
       });
-      it('retorna status json com array vazio', async function () {
+      it('retorna json com array com empresa', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resposta = await testMyController(empresaController.getAll);
         expect(resposta.body).to.be.deep.equal([{ name: 'teste Inc.', id: 99 }]);
@@ -187,7 +115,7 @@ describe('CONTROLLER', () => {
         const result = await testMyController(empresaController.getById, { ...req });
         expect(result.status).to.be.equal(200);
       });
-      it('retorna status json com array vazio', async function () {
+      it('retorna json com objeto vazio', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const result = await testMyController(empresaController.getById, { ...req });
         expect(result.body).to.be.deep.equal({});
@@ -217,7 +145,7 @@ describe('CONTROLLER', () => {
         const result = await testMyController(empresaController.getById, { ...req });
         expect(result.status).to.be.equal(200);
       });
-      it('retorna status json com array vazio', async function () {
+      it('retorna json com objeto vazio', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const result = await testMyController(empresaController.getById, { ...req });
         expect(result.body).to.be.deep.equal({ name: 'teste Inc.', id: 99 });
@@ -308,7 +236,7 @@ describe('CONTROLLER', () => {
         const result = await testMyController(empresaController.create, { ...req });
         expect(result.status).to.be.equal(400);
       });
-      it('retorna status json com array vazio', async function () {
+      it('retorna json com objeto com mensgem de "Empresa existente"', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const result = await testMyController(empresaController.create, { ...req });
         expect(result.body).to.be.deep.equal({ message: 'Empresa já existe' });
@@ -402,7 +330,7 @@ describe('CONTROLLER', () => {
         const result = await testMyController(empresaController.update, { ...req });
         expect(result.status).to.be.equal(200);
       });
-      it('retorna status json com array vazio', async function () {
+      it('retorna json com objeto da empresa', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const result = await testMyController(empresaController.update, { ...req });
         expect(result.body).to.be.deep.equal({ name: 'Test Inc.', id: 1 });
@@ -496,7 +424,7 @@ describe('CONTROLLER', () => {
         const result = await testMyController(empresaController.exclude, { ...req });
         expect(result.status).to.be.equal(204);
       });
-      it('retorna status json com undefined', async function () {
+      it('retorna json com undefined', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const result = await testMyController(empresaController.exclude, { ...req });
         expect(result.body).to.be.deep.equal(undefined);
