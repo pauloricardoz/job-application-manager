@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS empresas (
 
 CREATE TABLE IF NOT EXISTS inscricoes (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    empresa INT NOT NULL,
+    empresa_id INT NOT NULL,
     data_inscricao DATE NOT NULL,
     data_retorno DATE,
     status VARCHAR(20),
