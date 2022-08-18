@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS inscricoes (
     data_inscricao DATE NOT NULL,
     data_retorno DATE,
     status VARCHAR(20),
-    FOREIGN KEY (empresa)
+    FOREIGN KEY (empresa_id)
         REFERENCES empresas(id)
         ON DELETE CASCADE
 );
@@ -45,7 +45,7 @@ VALUES ("Trybe"),
        
 INSERT INTO habilidades (name,    level ) VALUES ('javascript', "junior");
 
-INSERT INTO inscricoes (empresa,data_inscricao ,status) VALUES (1, '2022-03-05', 'aplicado');
+INSERT INTO inscricoes (empresa_id,data_inscricao ,status) VALUES (1, '2022-03-05', 'aplicado');
 
 
 INSERT INTO inscricao_habilidades (id_inscricao ,id_habilidades) VALUES (1,1);
