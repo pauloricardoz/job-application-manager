@@ -9,6 +9,7 @@ app.use(express.json());
 
 app.use('/empresas', routes.empresaRoute);
 app.use('/habilidades', routes.habilidadesRoute);
+app.use('/inscricoes', routes.inscricoesRoute);
 
 // app.use((err, req, res, next) => {
 //   if (err.message === 'connect ECONNREFUSED 127.0.0.1:3306') {
@@ -20,6 +21,3 @@ app.use('/habilidades', routes.habilidadesRoute);
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => console.log(`rodando na porta ${PORT}`));
-
-// https://www.themealdb.com/api/json/v1/1/search?s=Arrabiata
-// https://opentdb.com/api.php?amount=1
