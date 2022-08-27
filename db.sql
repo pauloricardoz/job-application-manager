@@ -28,15 +28,15 @@ CREATE TABLE IF NOT EXISTS habilidades (
 
 CREATE TABLE IF NOT EXISTS inscricao_habilidades (
     id_inscricao INT ,
-    id_habilidades INT ,
+    id_habilidade INT ,
     FOREIGN KEY (id_inscricao)
         REFERENCES inscricoes(id)
         ON DELETE CASCADE,
-	FOREIGN KEY (id_habilidades)
+	FOREIGN KEY (id_habilidade)
         REFERENCES habilidades(id)
         ON DELETE CASCADE,
         
-	PRIMARY KEY (id_inscricao, id_habilidades )
+	PRIMARY KEY (id_inscricao, id_habilidade )
 );
 
 INSERT INTO empresas (name)
@@ -48,4 +48,4 @@ INSERT INTO habilidades (name,    level ) VALUES ('javascript', "junior");
 INSERT INTO inscricoes (empresa_id,data_inscricao ,status) VALUES (1, '2022-03-05', 'aplicado');
 
 
-INSERT INTO inscricao_habilidades (id_inscricao ,id_habilidades) VALUES (1,1);
+INSERT INTO inscricao_habilidades (id_inscricao ,id_habilidade) VALUES (1,1);
