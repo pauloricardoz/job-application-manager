@@ -1,7 +1,7 @@
 const express = require('express');
 
 const habilidadesController = require('../controllers/habilidadesController');
-const valid = require('../middleware/habildiades');
+const valid = require('../middleware/habilidades');
 
 const habilidadesRoute = express.Router();
 
