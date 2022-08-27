@@ -1,9 +1,9 @@
 const { expect } = require('chai');
 const { describe } = require('mocha');
 const Sinon = require('sinon');
-const connection = require('../../../models/connection');
+const connection = require('../../../src/models/connection');
 
-const habilidadesModel = require('../../../models/habilidadesModel');
+const habilidadesModel = require('../../../src/models/habilidadesModel');
 
 describe('MODEL HABILIDADES', () => {
   describe('GET ALL', () => {

@@ -2,8 +2,8 @@ const { expect } = require('chai');
 const { describe } = require('mocha');
 const Sinon = require('sinon');
 
-const habilidadesModel = require('../../../models/habilidadesModel');
-const habilidadesService = require('../../../services/habilidadesService');
+const habilidadesModel = require('../../../src/models/habilidadesModel');
+const habilidadesService = require('../../../src/services/habilidadesService');
 
 describe('SERVICE', () => {
   describe('GET ALL', () => {

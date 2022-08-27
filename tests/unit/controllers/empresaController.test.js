@@ -5,8 +5,8 @@ require('dotenv/config');
 
 const testErrors = process.env.TEST_ERRORS === 'true';
 
-const empresaService = require('../../../services/empresaService');
-const empresaController = require('../../../controllers/empresaController');
+const empresaService = require('../../../src/services/empresaService');
+const empresaController = require('../../../src/controllers/empresaController');
 const testMyController = require('../helper/controllerTester');
 
 describe('CONTROLLER EMPRESA', () => {
@@ -56,7 +56,9 @@ describe('CONTROLLER EMPRESA', () => {
       it('retorna json com array com empresa', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resposta = await testMyController(empresaController.getAll);
-        expect(resposta.body).to.be.deep.equal([{ name: 'teste Inc.', id: 99 }]);
+        expect(resposta.body).to.be.deep.equal([
+          { name: 'teste Inc.', id: 99 },
+        ]);
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
@@ -112,22 +114,30 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 200', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.getById, { ...req });
+        const result = await testMyController(empresaController.getById, {
+          ...req,
+        });
         expect(result.status).to.be.equal(200);
       });
       it('retorna json com objeto vazio', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.getById, { ...req });
+        const result = await testMyController(empresaController.getById, {
+          ...req,
+        });
         expect(result.body).to.be.deep.equal({});
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.getById, { ...req });
+        const result = await testMyController(empresaController.getById, {
+          ...req,
+        });
         expect(result.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.getById, { ...req });
+        const result = await testMyController(empresaController.getById, {
+          ...req,
+        });
         expect(result.spies.json.calledOnce).to.be.equal(true);
       });
     });
@@ -142,29 +152,39 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 200', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.getById, { ...req });
+        const result = await testMyController(empresaController.getById, {
+          ...req,
+        });
         expect(result.status).to.be.equal(200);
       });
       it('retorna json com objeto vazio', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.getById, { ...req });
+        const result = await testMyController(empresaController.getById, {
+          ...req,
+        });
         expect(result.body).to.be.deep.equal({ name: 'teste Inc.', id: 99 });
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.getById, { ...req });
+        const result = await testMyController(empresaController.getById, {
+          ...req,
+        });
         expect(result.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.getById, { ...req });
+        const result = await testMyController(empresaController.getById, {
+          ...req,
+        });
         expect(result.spies.json.calledOnce).to.be.equal(true);
       });
     });
     describe('BD lança erro', () => {
       if (testErrors) return null;
       beforeEach(async function () {
-        Sinon.stub(empresaService, 'getById').throws(new Error('Erro do teste'));
+        Sinon.stub(empresaService, 'getById').throws(
+          new Error('Erro do teste'),
+        );
       });
       afterEach(function () {
         Sinon.restore();
@@ -204,22 +224,30 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 201', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.create, { ...req });
+        const result = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(result.status).to.be.equal(201);
       });
       it('retorna json com objeto criado', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.create, { ...req });
+        const result = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(result.body).to.be.deep.equal({ id: 1, name: 'Test Inc.' });
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.create, { ...req });
+        const result = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(result.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.create, { ...req });
+        const result = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(result.spies.json.calledOnce).to.be.equal(true);
       });
     });
@@ -233,22 +261,30 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 400', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.create, { ...req });
+        const result = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(result.status).to.be.equal(400);
       });
       it('retorna json com objeto com mensgem de "Empresa existente"', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.create, { ...req });
+        const result = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(result.body).to.be.deep.equal({ message: 'Empresa já existe' });
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.create, { ...req });
+        const result = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(result.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.create, { ...req });
+        const result = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(result.spies.json.calledOnce).to.be.equal(true);
       });
     });
@@ -264,22 +300,30 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 500', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.create, { ...req });
+        const resposta = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(resposta.status).to.be.equal(500);
       });
       it('retorna json com objeto com mensagem de erro', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.create, { ...req });
+        const resposta = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(resposta.body).to.be.deep.equal({ message: 'Algo deu errado' });
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.create, { ...req });
+        const resposta = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(resposta.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.create, { ...req });
+        const resposta = await testMyController(empresaController.create, {
+          ...req,
+        });
         expect(resposta.spies.json.calledOnce).to.be.equal(true);
       });
     });
@@ -297,22 +341,32 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 400', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.update, { ...req });
+        const result = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(result.status).to.be.equal(400);
       });
       it('retorna json com objeto criado', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.update, { ...req });
-        expect(result.body).to.be.deep.equal({ message: 'Operação não foi completada' });
+        const result = await testMyController(empresaController.update, {
+          ...req,
+        });
+        expect(result.body).to.be.deep.equal({
+          message: 'Operação não foi completada',
+        });
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.update, { ...req });
+        const result = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(result.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.update, { ...req });
+        const result = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(result.spies.json.calledOnce).to.be.equal(true);
       });
     });
@@ -327,22 +381,30 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 200', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.update, { ...req });
+        const result = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(result.status).to.be.equal(200);
       });
       it('retorna json com objeto da empresa', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.update, { ...req });
+        const result = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(result.body).to.be.deep.equal({ name: 'Test Inc.', id: 1 });
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.update, { ...req });
+        const result = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(result.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.update, { ...req });
+        const result = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(result.spies.json.calledOnce).to.be.equal(true);
       });
     });
@@ -358,22 +420,30 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 500', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.update, { ...req });
+        const resposta = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(resposta.status).to.be.equal(500);
       });
       it('retorna json com objeto com mensagem de erro', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.update, { ...req });
+        const resposta = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(resposta.body).to.be.deep.equal({ message: 'Algo deu errado' });
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.update, { ...req });
+        const resposta = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(resposta.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.update, { ...req });
+        const resposta = await testMyController(empresaController.update, {
+          ...req,
+        });
         expect(resposta.spies.json.calledOnce).to.be.equal(true);
       });
     });
@@ -391,22 +461,32 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 404', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.exclude, { ...req });
+        const result = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(result.status).to.be.equal(404);
       });
       it('retorna json com objeto criado', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.exclude, { ...req });
-        expect(result.body).to.be.deep.equal({ message: 'Nenhuma linha afetada' });
+        const result = await testMyController(empresaController.exclude, {
+          ...req,
+        });
+        expect(result.body).to.be.deep.equal({
+          message: 'Nenhuma linha afetada',
+        });
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.exclude, { ...req });
+        const result = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(result.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.exclude, { ...req });
+        const result = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(result.spies.json.calledOnce).to.be.equal(true);
       });
     });
@@ -421,22 +501,30 @@ describe('CONTROLLER EMPRESA', () => {
       });
       it('retorna status 204', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.exclude, { ...req });
+        const result = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(result.status).to.be.equal(204);
       });
       it('retorna json com undefined', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.exclude, { ...req });
+        const result = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(result.body).to.be.deep.equal(undefined);
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.exclude, { ...req });
+        const result = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(result.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const result = await testMyController(empresaController.exclude, { ...req });
+        const result = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(result.spies.json.calledOnce).to.be.equal(true);
       });
     });
@@ -445,29 +533,39 @@ describe('CONTROLLER EMPRESA', () => {
 
       const req = { body: { name: 'Test Inc.' }, params: { id: '1' } };
       beforeEach(async function () {
-        Sinon.stub(empresaService, 'exclude').throws(new Error('Erro do teste'));
+        Sinon.stub(empresaService, 'exclude').throws(
+          new Error('Erro do teste'),
+        );
       });
       afterEach(function () {
         Sinon.restore();
       });
       it('retorna status 500', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.exclude, { ...req });
+        const resposta = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(resposta.status).to.be.equal(500);
       });
       it('retorna json com objeto com mensagem de erro', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.exclude, { ...req });
+        const resposta = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(resposta.body).to.be.deep.equal({ message: 'Algo deu errado' });
       });
       it('status chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.exclude, { ...req });
+        const resposta = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(resposta.spies.status.calledOnce).to.be.equal(true);
       });
       it('json chamado uma unica vez', async function () {
         // AAA - ARRANGE - ACT - ASSERT
-        const resposta = await testMyController(empresaController.exclude, { ...req });
+        const resposta = await testMyController(empresaController.exclude, {
+          ...req,
+        });
         expect(resposta.spies.json.calledOnce).to.be.equal(true);
       });
     });
