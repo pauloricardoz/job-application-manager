@@ -12,6 +12,4 @@ app.use('/habilidades', routes.habilidadesRoute);
 app.use('/inscricoes', routes.inscricoesRoute);
 app.use('/inscricao-habilidades', routes.inscricaoHabilidadesRoute);
 
-const PORT = process.env.PORT || 4000;
-
-app.listen(PORT, () => console.log(`rodando na porta ${PORT}`));
+module.exports = app;

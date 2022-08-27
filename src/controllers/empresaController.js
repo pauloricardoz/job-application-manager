@@ -15,7 +15,7 @@ const getAll = async (_req, res) => {
 const getById = async (req, res) => {
   const { id } = req.params;
   try {
-    const result = await empresaService.getById(id); 
+    const result = await empresaService.getById(id);
     return res.status(200).json(result);
   } catch (error) {
     console.log(error);
@@ -26,7 +26,7 @@ const getById = async (req, res) => {
 const create = async (req, res) => {
   const { name } = req.body;
   try {
-    const result = await empresaService.create({ name }); 
+    const result = await empresaService.create({ name });
     if (!result) return res.status(400).json({ message: 'Empresa já existe' });
     return res.status(201).json(result);
   } catch (error) {
@@ -39,8 +39,10 @@ const update = async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   try {
-    const result = await empresaService.update({ name, id }); 
-    if (!result) return res.status(400).json({ message: 'Operação não foi completada' });
+    const result = await empresaService.update({ name, id });
+    if (!result) {
+      return res.status(400).json({ message: 'Operação não foi completada' });
+    }
     return res.status(200).json(result);
   } catch (error) {
     console.log(error);
@@ -51,8 +53,10 @@ const update = async (req, res) => {
 const exclude = async (req, res) => {
   const { id } = req.params;
   try {
-    const result = await empresaService.exclude(id); 
-    if (!result) return res.status(404).json({ message: 'Nenhuma linha afetada' });
+    const result = await empresaService.exclude(id);
+    if (!result) {
+      return res.status(404).json({ message: 'Nenhuma linha afetada' });
+    }
     return res.status(204).json();
   } catch (error) {
     console.log(error);
