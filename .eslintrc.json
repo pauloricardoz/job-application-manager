@@ -19,7 +19,8 @@
         "no-unused-expressions": "off",
         "sonarjs/no-identical-functions": "off",
         "max-lines": "off",
-        "sonarjs/no-duplicate-string": "off"
+        "sonarjs/no-duplicate-string": "off",
+        "mocha/no-mocha-arrows": "off"
       }
     }
   ]
