@@ -7,7 +7,8 @@
     "indent": [
       "error",
       2
-    ]
+    ],
+    "function-paren-newline": "off"
   },
   "overrides": [
     {
@@ -20,7 +21,7 @@
         "sonarjs/no-identical-functions": "off",
         "max-lines": "off",
         "sonarjs/no-duplicate-string": "off",
-        "mocha/no-mocha-arrows": "off"
+        "mocha/no-mocha-arrows": "off",
       }
     }
   ]
