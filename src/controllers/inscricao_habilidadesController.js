@@ -12,16 +12,6 @@ const getAll = async (_req, res, _next) => {
   }
 };
 
-const getById = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const result = await inscricaoHabilidadesService.getById(id); 
-    return res.status(200).json(result);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: ERROR_500 });
-  }
-};
 
 const create = async (req, res) => {
   const { idInscricao, idHabilidade } = req.body;
@@ -61,4 +51,4 @@ const exclude = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getById, create, update, exclude };
+module.exports = { getAll, create, update, exclude };

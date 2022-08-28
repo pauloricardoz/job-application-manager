@@ -2,7 +2,6 @@ const inscricaoHabilidadesModel = require('../models/inscricao_habilidadesModel'
 
 const getAll = async () => inscricaoHabilidadesModel.getAll();
 
-const getById = async (id) => inscricaoHabilidadesModel.getById(id);
 
 const create = async ({ 
   idInscricao, idHabilidade,
@@ -25,4 +24,4 @@ const exclude = async (id) => {
   return true;
 };
 
-module.exports = { getAll, getById, create, update, exclude };
+module.exports = { getAll, create, update, exclude };

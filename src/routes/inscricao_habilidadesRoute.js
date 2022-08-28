@@ -7,7 +7,6 @@ const inscricaoHabilidadesRoute = express.Router();
 
 inscricaoHabilidadesRoute.get('/', inscricaoHabilidadesController.getAll);
 inscricaoHabilidadesRoute.post('/', valid.validationBody, inscricaoHabilidadesController.create);
-inscricaoHabilidadesRoute.get('/:id', inscricaoHabilidadesController.getById);
 inscricaoHabilidadesRoute.put('/:id', valid.validationBody, inscricaoHabilidadesController.update);
 inscricaoHabilidadesRoute.delete('/:id', inscricaoHabilidadesController.exclude);
 
