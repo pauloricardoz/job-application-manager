@@ -1,8 +1,7 @@
-const Inscricao = require('../database/sequelize/models/inscricao')
-const Empresa = require('../database/sequelize/models/empresa')
+const connection = require('./connection');
 
 const getAll = async () => {
-  const result = await Inscricao.findAll({include: {model:Empresa, as: 'empresa'}});
+  const [result] = await connection.execute('SELECT * FROM inscricoes');
   return result;
 };
 

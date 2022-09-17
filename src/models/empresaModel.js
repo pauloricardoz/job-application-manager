@@ -1,37 +1,30 @@
-const connection = require('./connection');
+const Empresa = require('../database/sequelize/models/empresa');
+
+const values = (data) => data;
 
 const getAll = async () => {
-  const [result] = await connection.execute('SELECT * FROM empresas');
-  return result;
+  const result = await Empresa.findAll();
+  return result.map(values);
 };
 
 const getById = async (id) => {
-  const [result] = await connection.execute(
-    'SELECT * FROM empresas WHERE id = ?;',
-    [id],
-  );
-  return result[0];
+  const result = await Empresa.findByPk(id);
+  return values(result);
 };
 
 const create = async ({ name }) => {
-  const [result] = await connection.execute(
-    'INSERT INTO empresas (name) VALUES (?);', [name],
-  );
-  return { name, id: result.insertId };
+  const result = await Empresa.create({ name });
+  return values(result);
 };
 
 const update = async ({ name, id }) => {
-  const [result] = await connection.execute(
-    'UPDATE empresas SET name = ? WHERE id = ?;', [name, id],
-  );
-  return result;
+  const result = await Empresa.update({ name }, { where: { id } });
+  return values(result);
 };
 
 const exclude = async (id) => {
-  const [result] = await connection.execute(
-    'DELETE FROM empresas WHERE id = ?;', [id],
-  );
-  return result;
+  const result = await Empresa.destroy({ where: { id } });
+  return values(result);
 };
 
 module.exports = { getAll, getById, create, update, exclude };
