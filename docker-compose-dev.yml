@@ -1,0 +1,32 @@
+version: '3'
+services:
+  back:
+    container_name: back_job
+    build: ./
+    image: zambs/job-application-manager:latest
+    ports:
+      - 3001:3001
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - PORT=3001
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=123456
+      - DB_DATA_BASE=processos
+      - TEST_ERRORS=false
+  db:
+    container_name: db_job
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    healthcheck:
+      test: mysqladmin ping -uroot -p123456
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    ports:
+      - 3306:3306
