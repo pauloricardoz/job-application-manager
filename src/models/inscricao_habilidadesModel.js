@@ -1,29 +1,22 @@
-const connection = require('./connection');
+const inscricaoHabilidade = require('../database/sequelize/models/inscricao_habilidade');
+const { extractValues } = require('../helper/sequelizeFunctions');
 
 const getAll = async () => {
-  const [result] = await connection.execute(
-    'SELECT * FROM inscricao_habilidades',
-  );
+  const result = await inscricaoHabilidade.findAll();
   return result;
 };
 
-
 const create = async ({ idInscricao, idHabilidade }) => {
-  const [result] = await connection.execute(
-    `INSERT INTO inscricao_habilidades
-    (id_inscricao, id_habilidade ) 
-    VALUES (?, ?);`,
-    [idInscricao, idHabilidade],
-  );
+  const result = await inscricaoHabilidade.create({
+    idHabilidade,
+    idInscricao,
+  });
   if (result.affectedRows === 0) return null;
-  return { idInscricao, idHabilidade };
+  return result;
 };
 
 const exclude = async (id) => {
-  const [result] = await connection.execute(
-    'DELETE FROM inscricao_habilidades WHERE id_inscricao = ?;',
-    [id],
-  );
+  const result = await inscricaoHabilidade.destroy({ where: { id } });
   return result;
 };
 

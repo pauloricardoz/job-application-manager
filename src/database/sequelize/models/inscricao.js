@@ -1,3 +1,4 @@
+const { INTEGER, DATE, STRING } = require('sequelize');
 const { sequelize, Sequelize } = require('.');
 const Empresa = require('./empresa')
 
@@ -5,28 +6,28 @@ const Inscricao = sequelize.define(
   'inscricao',
   {
     id: {
-      type: Sequelize.INTEGER,
+      type: INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
     },
     empresaId: {
-      type: Sequelize.INTEGER,
+      type: INTEGER,
       allowNull: false,
       field: 'empresa_id'
     },
     dataInscricao: {
-      type: Sequelize.DATE,
+      type: DATE,
       allowNull: false,
       field: 'data_inscricao'
     },
     dataRetorno: {
-      type: Sequelize.DATE,
+      type: DATE,
       allowNull: true,
       field: 'data_retorno'
     },
     status: {
-      type: Sequelize.STRING,
+      type: STRING,
       allowNull: false,
     },
   },

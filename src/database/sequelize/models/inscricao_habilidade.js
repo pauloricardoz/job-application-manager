@@ -1,13 +1,14 @@
+const { INTEGER } = require('sequelize');
 const { sequelize, Sequelize } = require('.');
 
 const inscricaoHabilidade = sequelize.define('inscricaoHabilidade', {
   idInscricao: {
-    type: Sequelize.INTEGER,
+    type: INTEGER,
     field: 'id_inscricao',
     primaryKey: true,
   },
   idHabilidade: {
-    type: Sequelize.INTEGER,
+    type: INTEGER,
     field: 'id_habilidade',
   },
 },

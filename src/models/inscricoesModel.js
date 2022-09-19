@@ -1,43 +1,44 @@
-const Inscricao = require('../database/sequelize/models/inscricao')
-const Empresa = require('../database/sequelize/models/empresa')
+const Inscricao = require('../database/sequelize/models/inscricao');
+const Empresa = require('../database/sequelize/models/empresa');
 
 const getAll = async () => {
-  const result = await Inscricao.findAll({include: {model:Empresa, as: 'empresa'}});
+  const result = await Inscricao.findAll({
+    include: { model: Empresa, as: 'empresa' },
+  });
   return result;
 };
 
 const getById = async (id) => {
-  const [result] = await connection.execute(
-    'SELECT * FROM inscricoes WHERE id = ?;',
-    [id],
-  );
-  return result[0];
+  const result = await Inscricao.findByPk(id);
+  return result;
 };
 
 const create = async ({ empresaId, dataInscricao, dataRetorno, status }) => {
-  const [result] = await connection.execute(
-    `INSERT INTO inscricoes
-    (empresa_id, data_inscricao, data_retorno,status ) 
-    VALUES (?, ?, ?, ?);`,
-    [empresaId, dataInscricao, dataRetorno, status],
-  );
-  return { empresaId, dataInscricao, dataRetorno, status, id: result.insertId };
+  const result = await Inscricao.create({
+    empresaId,
+    dataInscricao,
+    dataRetorno,
+    status,
+  });
+  return result;
 };
 
-const update = async ({ empresaId, dataInscricao, dataRetorno, status, id }) => {
-  const [result] = await connection.execute(
-    `UPDATE inscricoes 
-    SET empresa_id = ?, data_inscricao = ?, data_retorno = ?, status = ? 
-    WHERE id = ?;`, 
-    [empresaId, dataInscricao, dataRetorno, status, id],
+const update = async ({
+  empresaId,
+  dataInscricao,
+  dataRetorno,
+  status,
+  id,
+}) => {
+  const result = await Inscricao.update(
+    { empresaId, dataInscricao, dataRetorno, status },
+    { where: { id } },
   );
   return result;
 };
 
 const exclude = async (id) => {
-  const [result] = await connection.execute(
-    'DELETE FROM inscricoes WHERE id = ?;', [id],
-  );
+  const result = await Inscricao.destroy({ where: { id } });
   return result;
 };
 
