@@ -19,8 +19,6 @@ services:
       - DB_DATA_BASE=processos
       - DIALECT=mysql
       - TEST_ERRORS=false
-    volumes:
-      - ./:/usr/app
   db:
     container_name: db_job
     image: mysql:8
