@@ -14,7 +14,11 @@ const Inscricao = sequelize.define(
     empresaId: {
       type: INTEGER,
       allowNull: false,
-      field: 'empresa_id'
+      field: 'empresa_id',
+      references: {
+        key: 'id',
+        model: 'empresa'
+      }
     },
     dataInscricao: {
       type: DATE,
