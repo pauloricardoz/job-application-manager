@@ -4,7 +4,9 @@ services:
     container_name: back_job
     build: ./
     image: zambs/job-application-manager:latest
-    command: sh -c "npm run db:create && npm run db:migrate"
+    command: sh -c "npm run db:create && npm run db:migrate && npm start"
+    tty: true
+    stdin_open: true
     ports:
       - 3001:3001
     depends_on:
@@ -19,6 +21,8 @@ services:
       - DB_DATA_BASE=processos
       - DIALECT=mysql
       - TEST_ERRORS=false
+    volumes:
+      - ./:/usr/app
   db:
     container_name: db_job
     image: mysql:8

@@ -4,7 +4,9 @@ services:
     container_name: back_job
     build: ./
     image: zambs/job-application-manager:latest
-    command: sh -c "npm run db:create && npm run db:migrate"
+    tty: true
+    stdin_open: true
+    command: sh
     ports:
       - 3001:3001
     depends_on:
