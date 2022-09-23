@@ -4,13 +4,19 @@
   "description": "Este repositório armazena os códigos e scripts fornecidos durante as aulas ao vivo pelos especiaplistas da Trybe.",
   "main": "server.js",
   "scripts": {
+    "db:drop":"npx sequelize-cli db:drop",
+    "db:create":"npx sequelize-cli db:create",
+    "db:migrate":"npx sequelize-cli db:migrate",
+    "db:seed":"npx sequelize-cli db:seed:all",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "mocha tests/**/**/*.test.js --exit",
     "test:unit": "mocha tests/unit/**/*.test.js --exit",
     "test:integration": "mocha tests/integration/**/*.test.js --exit",
     "test:all": "mocha tests/{unit,integration}/**/*.test.js --exit",
-    "coverage": "nyc --all --include controllers --include services --include models mocha tests/**/*$NAME*.test.js --exit"
+    "coverage": "nyc --all --include controllers --include services --include models mocha tests/**/*$NAME*.test.js --exit",
+    "dev:up": "docker-compose -f docker-compose-dev.yml up -d",
+    "dev:down": "docker-compose -f docker-compose-dev.yml down"
   },
   "repository": {
     "type": "git",
@@ -32,6 +38,7 @@
     "sequelize": "^6.23.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.5.0",
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
     "eslint-config-trybe-backend": "^1.0.4",
