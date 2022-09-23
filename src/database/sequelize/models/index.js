@@ -1,6 +1,15 @@
-const {Sequelize} = require('sequelize');
-const {development: { database, username, password, dialect}} = require('../config/config.json');
+const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize(database,username,password,{dialect});
+const ENVIRONMENT = process.env.NODE_ENV || 'development';
 
-module.exports = {sequelize, Sequelize};
+const { database, username, password, dialect, host } =
+  require('../config/config')[ENVIRONMENT];
+
+console.log(database, username, password, dialect, host);
+
+const sequelize = new Sequelize(database, username, password, {
+  dialect,
+  host,
+});
+
+module.exports = { sequelize, Sequelize };
