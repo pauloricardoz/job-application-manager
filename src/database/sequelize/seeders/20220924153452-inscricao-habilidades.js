@@ -7,16 +7,16 @@ module.exports = {
    * @param {import('sequelize')} Sequelize
    */
   async up(queryInterface, Sequelize) {
-    queryInterface.bulkDelete('habilidades', null);
-    queryInterface.bulkInsert('habilidades', [
+    console.log((await queryInterface.tab))
+    return queryInterface.bulkInsert('inscricao_habilidades', [
       {
-        idHabilidade: 1,
-        idInscricao: 1,
+        id_habilidade: 1,
+        id_inscricao: 1,
       },
     ]);
   },
 
   async down(queryInterface, Sequelize) {
-    queryInterface.bulkDelete('habilidades', null);
+    queryInterface.bulkDelete('inscricao_habilidades', null, {});
   },
 };

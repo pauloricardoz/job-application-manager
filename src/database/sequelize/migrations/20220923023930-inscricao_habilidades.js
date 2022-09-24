@@ -7,29 +7,29 @@ module.exports = {
    * @param {import('sequelize')} Sequelize
    */
   async up(queryInterface, Sequelize) {
-    queryInterface.createTable('inscricao_habilidades', {
+    return queryInterface.createTable('inscricao_habilidades', {
       idInscricao: {
         type: Sequelize.INTEGER,
         field: 'id_inscricao',
         allowNull: false,
         references: {
-          key:'id',
-          model: 'inscricoes'
-        }
+          key: 'id',
+          model: 'inscricoes',
+        },
       },
       idHabilidade: {
         type: Sequelize.INTEGER,
         field: 'id_habilidade',
         allowNull: false,
         references: {
-          key:'id',
-          model: 'habilidades'
-        }
+          key: 'id',
+          model: 'habilidades',
+        },
       },
     });
   },
 
   async down(queryInterface, Sequelize) {
-    queryInterface.dropTable('inscricao_habilidades')
+    queryInterface.dropTable('inscricao_habilidades');
   },
 };

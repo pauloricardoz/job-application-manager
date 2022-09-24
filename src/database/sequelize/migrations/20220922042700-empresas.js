@@ -7,7 +7,7 @@ module.exports = {
    * @param {import('sequelize')} Sequelize
    */
   async up(queryInterface, Sequelize) {
-    queryInterface.createTable('empresas', {
+    return queryInterface.createTable('empresas', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
