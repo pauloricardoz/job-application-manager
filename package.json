@@ -6,18 +6,19 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "mocha tests/**/**/*.test.js --exit",
-    "test:unit": "mocha tests/unit/**/*.test.js --exit",
+    "test": "NODE_ENV=test npm teste:integration",
+    "test:unit": "mocha tests/unit/**/*.test.js --exclude tests/unit/models/*.test.js --exit",
+    "pretest:integration": "NODE_ENV=test npm run db:reset",
     "test:integration": "mocha tests/integration/**/*.test.js --exit",
     "test:all": "mocha tests/{unit,integration}/**/*.test.js --exit",
     "coverage": "nyc --all --include controllers --include services --include models mocha tests/**/*$NAME*.test.js --exit",
     "dev:up": "docker-compose -f docker-compose-dev.yml up -d",
     "dev:down": "docker-compose -f docker-compose-dev.yml down",
-    "db:drop":"npx sequelize-cli db:drop",
-    "db:create":"npx sequelize-cli db:create",
-    "db:migrate":"npx sequelize-cli db:migrate",
-    "db:seed":"npx sequelize-cli db:seed:all",
-    "db:reset":" npm run db:drop && npm run db:create && npm run db:migrate && npm run db:seed"
+    "db:drop": "npx sequelize-cli db:drop",
+    "db:create": "npx sequelize-cli db:create",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:seed": "npx sequelize-cli db:seed:all",
+    "db:reset": " npm run db:drop && npm run db:create && npm run db:migrate && npm run db:seed"
   },
   "repository": {
     "type": "git",
