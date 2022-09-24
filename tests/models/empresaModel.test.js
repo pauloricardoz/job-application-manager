@@ -1,9 +1,8 @@
 const { expect } = require('chai');
 const { describe } = require('mocha');
 const Sinon = require('sinon');
-const connection = require('../../../src/models/connection');
 
-const empresaModel = require('../../../src/models/empresaModel');
+const empresaModel = require('../../src/models/empresaModel');
 
 describe('MODEL EMPRESA', () => {
   describe('GET ALL', () => {
@@ -13,7 +12,6 @@ describe('MODEL EMPRESA', () => {
     it('retorna array', async function () {
       // AAA - ARRANGE - ACT - ASSERT
       const resultExecute = [];
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const resultado = await empresaModel.getAll();
 
@@ -22,7 +20,6 @@ describe('MODEL EMPRESA', () => {
     it('retorna array vazio', async function () {
       // AAA - ARRANGE - ACT - ASSERT
       const resultExecute = [];
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const resultado = await empresaModel.getAll();
 
@@ -30,7 +27,6 @@ describe('MODEL EMPRESA', () => {
     });
     it('Retorna array cheio', async function () {
       const resultExecute = [{ id: 1, name: 'teste' }];
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const resultado = await empresaModel.getAll();
 
@@ -38,7 +34,6 @@ describe('MODEL EMPRESA', () => {
     });
     it('Retorna array contenha objetos ', async function () {
       const resultExecute = [{ id: 1, name: 'teste' }];
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const [resultado] = await empresaModel.getAll();
 
@@ -49,25 +44,22 @@ describe('MODEL EMPRESA', () => {
   describe('GET BY ID', () => {
     // before(()=>{
     //   const resultExecute = []
-    //   Sinon.stub(connection, 'execute').resolves([resultExecute]);
+
     // })
     afterEach(function () {
-      // connection.execute.restore();
       Sinon.restore();
     });
     it('retorna undefined', async function () {
       // AAA - ARRANGE - ACT - ASSERT
       const resultExecute = [];
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const resultado = await empresaModel.getById();
 
       expect(resultado).to.be.equal(undefined);
     });
-  
+
     it('Retorna um objeto', async function () {
       const resultExecute = [{ id: 1, name: 'teste' }];
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const resultado = await empresaModel.getById();
 
@@ -75,7 +67,6 @@ describe('MODEL EMPRESA', () => {
     });
     it('Retorna objetos que contenha "id" e "name"', async function () {
       const resultExecute = [{ id: 1, name: 'teste' }];
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const resultado = await empresaModel.getById(1);
 
@@ -86,26 +77,23 @@ describe('MODEL EMPRESA', () => {
   describe('CREATE', () => {
     // before(()=>{
     //   const resultExecute = []
-    //   Sinon.stub(connection, 'execute').resolves([resultExecute]);
+
     // })
     afterEach(function () {
-      // connection.execute.restore();
       Sinon.restore();
     });
     it('retorna objeto', async function () {
       // AAA - ARRANGE - ACT - ASSERT
       const resultExecute = { insertId: 1 };
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const resultado = await empresaModel.create({ name: 'tester' });
 
       expect(resultado).to.be.an('object');
     });
-  
+
     it('retorna objeto with "id" and "name"', async function () {
       // AAA - ARRANGE - ACT - ASSERT
       const resultExecute = { insertId: 1 };
-      Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const resultado = await empresaModel.create({ name: 'tester' });
 
@@ -116,26 +104,23 @@ describe('MODEL EMPRESA', () => {
     describe('Caso OK', () => {
       // before(()=>{
       //   const resultExecute = []
-      //   Sinon.stub(connection, 'execute').resolves([resultExecute]);
+
       // })
       afterEach(function () {
-        // connection.execute.restore();
         Sinon.restore();
       });
       it('retorna objeto', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resultExecute = { affectedRows: 1 };
-        Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
         const resultado = await empresaModel.update({ name: 'tester' });
 
         expect(resultado).to.be.an('object');
       });
-  
+
       it('retorna objeto with "id" and "name"', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resultExecute = { affectedRows: 1 };
-        Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
         const resultado = await empresaModel.update({ name: 'tester' });
 
@@ -145,26 +130,23 @@ describe('MODEL EMPRESA', () => {
     describe('Caso Falha', () => {
       // before(()=>{
       //   const resultExecute = []
-      //   Sinon.stub(connection, 'execute').resolves([resultExecute]);
+
       // })
       afterEach(function () {
-        // connection.execute.restore();
         Sinon.restore();
       });
       it('retorna objeto', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resultExecute = { affectedRows: 0 };
-        Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
         const resultado = await empresaModel.update({ name: 'tester' });
 
         expect(resultado).to.be.an('object');
       });
-  
+
       it('retorna objeto with "id" and "name"', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resultExecute = { affectedRows: 0 };
-        Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
         const resultado = await empresaModel.update({ name: 'tester' });
 
@@ -176,26 +158,23 @@ describe('MODEL EMPRESA', () => {
     describe('Caso OK', () => {
       // before(()=>{
       //   const resultExecute = []
-      //   Sinon.stub(connection, 'execute').resolves([resultExecute]);
+
       // })
       afterEach(function () {
-        // connection.execute.restore();
         Sinon.restore();
       });
       it('retorna objeto', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resultExecute = { affectedRows: 1 };
-        Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
         const resultado = await empresaModel.exclude({ name: 'tester' });
 
         expect(resultado).to.be.an('object');
       });
-  
+
       it('retorna objeto with "id" and "name"', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resultExecute = { affectedRows: 1 };
-        Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
         const resultado = await empresaModel.exclude({ name: 'tester' });
 
@@ -205,26 +184,23 @@ describe('MODEL EMPRESA', () => {
     describe('Caso Falha', () => {
       // before(()=>{
       //   const resultExecute = []
-      //   Sinon.stub(connection, 'execute').resolves([resultExecute]);
+
       // })
       afterEach(function () {
-        // connection.execute.restore();
         Sinon.restore();
       });
       it('retorna objeto', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resultExecute = { affectedRows: 0 };
-        Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
         const resultado = await empresaModel.exclude({ name: 'tester' });
 
         expect(resultado).to.be.an('object');
       });
-  
+
       it('retorna objeto with "id" and "name"', async function () {
         // AAA - ARRANGE - ACT - ASSERT
         const resultExecute = { affectedRows: 0 };
-        Sinon.stub(connection, 'execute').resolves([resultExecute]);
 
         const resultado = await empresaModel.exclude({ name: 'tester' });
 
