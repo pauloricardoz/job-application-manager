@@ -20,14 +20,14 @@ module.exports = {
   test: {
     username,
     password,
-    database:database + "-test",
+    database: database + '-test',
     host,
     dialect,
   },
   production: {
     username,
     password,
-    database:database + "-prod",
+    database: database + '-prod',
     host,
     dialect,
   },
