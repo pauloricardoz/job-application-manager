@@ -4,10 +4,6 @@
   "description": "Este repositório armazena os códigos e scripts fornecidos durante as aulas ao vivo pelos especiaplistas da Trybe.",
   "main": "server.js",
   "scripts": {
-    "db:drop":"npx sequelize-cli db:drop",
-    "db:create":"npx sequelize-cli db:create",
-    "db:migrate":"npx sequelize-cli db:migrate",
-    "db:seed":"npx sequelize-cli db:seed:all",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "mocha tests/**/**/*.test.js --exit",
@@ -16,7 +12,12 @@
     "test:all": "mocha tests/{unit,integration}/**/*.test.js --exit",
     "coverage": "nyc --all --include controllers --include services --include models mocha tests/**/*$NAME*.test.js --exit",
     "dev:up": "docker-compose -f docker-compose-dev.yml up -d",
-    "dev:down": "docker-compose -f docker-compose-dev.yml down"
+    "dev:down": "docker-compose -f docker-compose-dev.yml down",
+    "db:drop":"npx sequelize-cli db:drop",
+    "db:create":"npx sequelize-cli db:create",
+    "db:migrate":"npx sequelize-cli db:migrate",
+    "db:seed":"npx sequelize-cli db:seed:all",
+    "db:reset":" npm run db:drop && npm run db:create && npm run db:migrate && npm run db:seed"
   },
   "repository": {
     "type": "git",
