@@ -11,6 +11,7 @@ module.exports = {
       idInscricao: {
         type: Sequelize.INTEGER,
         field: 'id_inscricao',
+        allowNull: false,
         references: {
           key:'id',
           model: 'inscricoes'
@@ -19,6 +20,7 @@ module.exports = {
       idHabilidade: {
         type: Sequelize.INTEGER,
         field: 'id_habilidade',
+        allowNull: false,
         references: {
           key:'id',
           model: 'habilidades'

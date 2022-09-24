@@ -8,7 +8,12 @@ module.exports = {
    */
   async up(queryInterface, Sequelize) {
     queryInterface.createTable('empresas', {
-      id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+      },
       name: { type: Sequelize.STRING, allowNull: false },
     });
   },
