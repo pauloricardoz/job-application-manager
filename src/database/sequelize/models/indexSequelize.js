@@ -10,6 +10,9 @@ console.log(database, username, password, dialect, host);
 const sequelize = new Sequelize(database, username, password, {
   dialect,
   host,
+  dialectOptions: {
+    timeZome: 'Z'
+  }
 });
 
 module.exports = { sequelize, Sequelize };
