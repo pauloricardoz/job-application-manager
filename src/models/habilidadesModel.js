@@ -1,28 +1,28 @@
-const Habilidades = require('../database/sequelize/models/habilidade');
+const { Habilidade } = require('../database/sequelize/models/');
 const { extractValues } = require('../helper/sequelizeFunctions');
 
 const getAll = async () => {
-  const result = await Habilidades.findAll();
+  const result = await Habilidade.findAll();
   return result.map(extractValues);
 };
 
 const getById = async (id) => {
-  const result = await Habilidades.findByPk(id);
+  const result = await Habilidade.findByPk(id);
   return extractValues(result);
 };
 
 const create = async ({ name, level }) => {
-  const result = await Habilidades.create({ name, level });
+  const result = await Habilidade.create({ name, level });
   return extractValues(result);
 };
 
 const update = async ({ level, name, id }) => {
-  const result = await Habilidades.update({ level, name }, { where: { id } });
+  const result = await Habilidade.update({ level, name }, { where: { id } });
   return result;
 };
 
 const exclude = async (id) => {
-  const result = await Habilidades.destroy({ where: { id } });
+  const result = await Habilidade.destroy({ where: { id } });
   return result;
 };
 

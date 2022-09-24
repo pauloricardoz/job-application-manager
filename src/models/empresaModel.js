@@ -1,4 +1,4 @@
-const Empresa = require('../database/sequelize/models/empresa');
+const { Empresa } = require('../database/sequelize/models/');
 const { extractValues } = require('../helper/sequelizeFunctions');
 
 const getAll = async () => {

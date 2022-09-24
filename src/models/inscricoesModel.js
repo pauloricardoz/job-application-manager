@@ -1,5 +1,4 @@
-const Inscricao = require('../database/sequelize/models/inscricao');
-const Empresa = require('../database/sequelize/models/empresa');
+const { Inscricao, Empresa } = require('../database/sequelize/models/');
 
 const getAll = async () => {
   const result = await Inscricao.findAll({

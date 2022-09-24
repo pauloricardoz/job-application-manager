@@ -1,5 +1,5 @@
 const { STRING } = require('sequelize');
-const { sequelize, Sequelize } = require('.');
+const { sequelize, Sequelize } = require('./indexSequelize');
 
 const Habilidade = sequelize.define(
   'habilidade',

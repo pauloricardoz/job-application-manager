@@ -1,7 +1,7 @@
-const { INTEGER } = require('sequelize');
-const { sequelize, Sequelize } = require('.');
+const { sequelize, Sequelize } = require('./indexSequelize');
+const { INTEGER } = Sequelize;
 
-const inscricaoHabilidade = sequelize.define(
+const InscricaoHabilidade = sequelize.define(
   'inscricaoHabilidade',
   {
     idInscricao: {
@@ -27,4 +27,4 @@ const inscricaoHabilidade = sequelize.define(
   },
 );
 
-module.exports = inscricaoHabilidade;
+module.exports = InscricaoHabilidade;

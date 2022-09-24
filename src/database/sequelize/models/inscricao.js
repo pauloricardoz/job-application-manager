@@ -1,6 +1,6 @@
-const { INTEGER, DATE, STRING } = require('sequelize');
-const { sequelize, Sequelize } = require('.');
-const Empresa = require('./empresa')
+const { sequelize, Sequelize } = require('./indexSequelize');
+const { INTEGER, DATE, STRING } = Sequelize;
+const Empresa = require('./empresa');
 
 const Inscricao = sequelize.define(
   'inscricao',
@@ -17,18 +17,18 @@ const Inscricao = sequelize.define(
       field: 'empresa_id',
       references: {
         key: 'id',
-        model: 'empresa'
-      }
+        model: 'empresa',
+      },
     },
     dataInscricao: {
       type: DATE,
       allowNull: false,
-      field: 'data_inscricao'
+      field: 'data_inscricao',
     },
     dataRetorno: {
       type: DATE,
       allowNull: true,
-      field: 'data_retorno'
+      field: 'data_retorno',
     },
     status: {
       type: STRING,
@@ -40,10 +40,5 @@ const Inscricao = sequelize.define(
     tableName: 'inscricoes',
   },
 );
-
-Inscricao.belongsTo(Empresa, {
-  as: 'empresa',
-  foreignKey: 'empresaId'
-});
 
 module.exports = Inscricao;

@@ -1,13 +1,13 @@
-const inscricaoHabilidade = require('../database/sequelize/models/inscricao_habilidade');
+const { InscricaoHabilidade } = require('../database/sequelize/models/');
 const { extractValues } = require('../helper/sequelizeFunctions');
 
 const getAll = async () => {
-  const result = await inscricaoHabilidade.findAll();
+  const result = await InscricaoHabilidade.findAll();
   return result;
 };
 
 const create = async ({ idInscricao, idHabilidade }) => {
-  const result = await inscricaoHabilidade.create({
+  const result = await InscricaoHabilidade.create({
     idHabilidade,
     idInscricao,
   });
@@ -16,7 +16,7 @@ const create = async ({ idInscricao, idHabilidade }) => {
 };
 
 const exclude = async (id) => {
-  const result = await inscricaoHabilidade.destroy({ where: { id } });
+  const result = await InscricaoHabilidade.destroy({ where: { id } });
   return result;
 };
 

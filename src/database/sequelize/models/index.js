@@ -1,15 +1,27 @@
-const { Sequelize } = require('sequelize');
+const Empresa = require('./empresa');
+const Habilidade = require('./habilidade');
+const Inscricao = require('./inscricao');
+const InscricaoHabilidade = require('./inscricao_habilidade');
 
-const ENVIRONMENT = process.env.NODE_ENV || 'development';
+Inscricao.belongsTo(Empresa, { foreignKey: 'empresaId', as: 'empresa' });
 
-const { database, username, password, dialect, host } =
-  require('../config/config')[ENVIRONMENT];
-
-console.log(database, username, password, dialect, host);
-
-const sequelize = new Sequelize(database, username, password, {
-  dialect,
-  host,
+Inscricao.belongsToMany(Habilidade, {
+  foreignKey: 'idInscricao',
+  as: 'habilidade',
+  otherKey: 'idHabilidade',
+  through: InscricaoHabilidade,
 });
 
-module.exports = { sequelize, Sequelize };
+Habilidade.belongsToMany(Habilidade, {
+  foreignKey: 'idHabilidade',
+  as: 'inscricao',
+  otherKey: 'idInscricao',
+  through: InscricaoHabilidade,
+});
+
+module.exports = {
+  Empresa,
+  Habilidade,
+  Inscricao,
+  InscricaoHabilidade,
+};
